@@ -1,0 +1,37 @@
+  {
+    "name": "ACDC Plugin - AC Control Feature",
+    "version": "1.1",
+    "description": "ACDC Plugin With New Features to Make Your Life Easier. Beta version with Monthly Calculate by Project",
+    "permissions": ["activeTab", "declarativeContent", "storage"],
+    "options_page": "options.html",
+    "background": {
+      "scripts": ["background.js"],
+      "persistent": false
+    },
+    "content_scripts": [         
+       {
+        "matches": ["https://acdc2.avenuecode.com/monthly-report"],
+        "js": ["jquery.min.js", "addContentMonthPage.js"]
+       },
+       {
+        "matches": ["https://acdc2.avenuecode.com/"],
+        "js": ["jquery.min.js", "addContentHomePage.js"]
+       }
+    ],
+    "page_action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "images/avenue_code_logo_2.png",
+        "32": "images/avenue_code_logo_2.png",
+        "48": "images/avenue_code_logo_2.png",
+        "128": "images/avenue_code_logo_2.png"
+      }
+    },
+    "icons": {
+      "16": "images/avenue_code_logo_2.png",
+      "32": "images/avenue_code_logo_2.png",
+      "48": "images/avenue_code_logo_2.png",
+      "128": "images/avenue_code_logo_2.png"
+    },
+    "manifest_version": 2
+  }
