@@ -23,17 +23,15 @@ function extractTime(time){
   if (time.includes("h")){
       prefix = time.split("h");
       hours = parseInt(prefix[0]);
-    
-    if (prefix.lenght > 1){
-      time = prefix[1];
-    }
+      time = prefix.lenght > 1 ? prefix[1] : time;
   }
 
-if (time.includes("min")){
-  minutes += (parseInt(time.split("min")[0])/60);
-}
+  if (time.includes("min")){
+    minutes += (parseInt(time.split("min")[0])/60);
+  }
 
   return Math.round((hours + minutes + Number.EPSILON) * 100) / 100;
+  
 }
 
 var calculateWorkedHoursByProject = function (){
