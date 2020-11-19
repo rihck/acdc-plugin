@@ -17,6 +17,23 @@ waitForEl('div.not-loading', function() {
   calculateWorkedHoursByProject();
 });
 
+function extractTime(time){
+    hours = 0;
+    minutes = 0;
+    if (time.includes("h")){
+        prefix = time.split("h");
+      hours = parseInt(prefix[0]);
+      if (prefix.lenght > 1){
+        time = prefix[1];
+        }
+  }
+if (time.includes("min")){
+  minutes += (parseInt(time.split("min")[0])/60);
+}
+
+return Math.round((hours + minutes + Number.EPSILON) * 100) / 100;
+}
+
 var calculateWorkedHoursByProject = function (){
   var map = {};
   document.querySelectorAll('.time-slot').forEach(function(el) {
@@ -29,6 +46,8 @@ var calculateWorkedHoursByProject = function (){
     }
 
     map[taskName] = map[taskName] + parseFloat(taskHour);
+    var hasCharacters = taskHour.match('([A-Za-z])');
+    map[taskName] += hasCharacters ? extractTime(taskHour) : parseFloat(taskHour);
   })
 
   var oldSpans = document.getElementsByClassName('tasksSpan');
