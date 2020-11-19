@@ -23,10 +23,10 @@ function extractTime(time){
   if (time.includes("h")){
       prefix = time.split("h");
       hours = parseInt(prefix[0]);
-      time = prefix.lenght > 1 ? prefix[1] : time;
+      time = prefix.lenght > 1 ? prefix[1].trim() : time;
   }
 
-  if (time.includes("min")){
+  if (time.includes("m")){
     minutes += (parseInt(time.split("min")[0])/60);
   }
 
