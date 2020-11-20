@@ -17,29 +17,6 @@ waitForEl('div.not-loading', function() {
   calculateWorkedHoursByProject();
 });
 
-var extractTime = function(time){
-  var hours = 0;
-  var minutes = 0;
-  if (time.includes("h")){
-      prefix = time.split("h");
-      hours = parseInt(prefix[0]);
-      time = prefix.length > 1 ? prefix[1].trim() : time;
-  }
-
-  if (time.includes("m")){
-    time = parseInt(time.split("m")[0]);
-    minutes += (time/60);
-  }
-
-  return Math.round((hours + minutes + Number.EPSILON) * 100) / 100;
-  
-};
-
-var isHourly = function(){
-  var footerHours = document.querySelectorAll(".mr-4.mb-0 strong");
-  return footerHours[footerHours.length - 1].textContent.match('([A-Za-z])');
-};
-
 var calculateWorkedHoursByProject = function (){
   var map = {};
   document.querySelectorAll('.time-slot').forEach(function(el) {
@@ -68,6 +45,29 @@ var calculateWorkedHoursByProject = function (){
           `<p class="mr-4 mb-0 tasksSpan">${i} &nbsp;<strong>${map[i]}</strong></p>`);
   }
   var map = {};
+};
+
+var extractTime = function(time){
+  var hours = 0;
+  var minutes = 0;
+  if (time.includes("h")){
+      prefix = time.split("h");
+      hours = parseInt(prefix[0]);
+      time = prefix.length > 1 ? prefix[1].trim() : time;
+  }
+
+  if (time.includes("m")){
+    time = parseInt(time.split("m")[0]);
+    minutes += (time/60);
+  }
+
+  return Math.round((hours + minutes + Number.EPSILON) * 100) / 100;
+  
+};
+
+var isHourly = function(){
+  var footerHours = document.querySelectorAll(".mr-4.mb-0 strong");
+  return footerHours[footerHours.length - 1].textContent.match('([A-Za-z])');
 };
 
 var decimalStringToMinutes = function(valueString){
