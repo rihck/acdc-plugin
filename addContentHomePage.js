@@ -13,10 +13,25 @@ var waitForEl = function(selector, callback) {
       }
   };
 
-waitForEl('.infoButtonTimesheet', function() {
+
+// If the feature was not load, checking if here and loading it if needed (recovery).
+setTimeout(function() {
+if(document.getElementsByClassName('tasksSpan').length == 0)
+{
+          console.log("Loaded from setTimeout");
+          createCalculateButtonOnDOM();  
+          calculateWorkedHoursByProject();
+}
+
+        }, 4000);
+
+
+waitForEl('.day-column-footer-total', function() {
+  console.log("Loaded from waitForEl");
   createCalculateButtonOnDOM();  
   calculateWorkedHoursByProject();
 });
+
 
 var calculateWorkedHoursByProject = function (){
   var map = {};
