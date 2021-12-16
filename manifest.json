@@ -1,6 +1,6 @@
   {
     "name": "ACDC Plugin - AC Control Feature",
-    "version": "1.6",
+    "version": "1.7",
     "description": "ACDC Plugin With New Features to Make Your Life Easier. Beta version with Monthly Calculate by Project",
     "permissions": [],
     "options_page": "options.html",
